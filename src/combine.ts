@@ -12,7 +12,7 @@ export function notAccepted() {
   return new Response(
     undefined,
     {
-      status: 405
+      status: 406
     }
   );
 }
