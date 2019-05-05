@@ -1,0 +1,60 @@
+{
+  "@context": {
+    "ldp": "http://www.w3.org/ns/ldp#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "st": "http://www.w3.org/ns/posix/stat#",
+    "terms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "https://example.com/directory/": "https://example.com/directory/"
+  },
+  "@graph": [
+    {
+      "@id": "https://example.com/directory/",
+      "@type": [
+        "ldp:BasicContainer",
+        "ldp:Container",
+        "ldp:Resource"
+      ],
+      "ldp:contains": [
+        {
+          "@id": "https://example.com/directory/file-1.txt"
+        },
+        {
+          "@id": "https://example.com/directory/file-2.txt"
+        },
+        {
+          "@id": "https://example.com/directory/file-3.txt"
+        },
+        {
+          "@id": "https://example.com/directory/another/"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.com/directory/file-1.txt",
+      "@type": [
+        "ldp:Resource"
+      ]
+    },
+    {
+      "@id": "https://example.com/directory/file-2.txt",
+      "@type": [
+        "ldp:Resource"
+      ]
+    },
+    {
+      "@id": "https://example.com/directory/file-3.txt",
+      "@type": [
+        "ldp:Resource"
+      ]
+    },
+    {
+      "@id": "https://example.com/directory/another/",
+      "@type": [
+        "ldp:BasicContainer",
+        "ldp:Container",
+        "ldp:Resource"
+      ]
+    }
+  ]
+}
