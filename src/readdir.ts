@@ -5,7 +5,8 @@ import { Fetcher } from "./fetcher";
 const ldp = Namespace("http://www.w3.org/ns/ldp#");
 
 export async function readdir(request: Request, abs: string, fetch: Fetcher): Promise<string[]> {
-  const url = new URL(abs, new URL(request.url).origin).toString(),
+  const origin = new URL(request.url).origin;
+  const url = new URL(abs, origin).toString(),
     contentType = "application/ld+json";
 
   const response = await fetch(
@@ -46,5 +47,9 @@ export async function readdir(request: Request, abs: string, fetch: Fetcher): Pr
   const dir = resourceGraph.sym(url);
 
   return resourceGraph.match(dir, ldp("contains"), undefined, undefined)
-    .map((value): string => value.object.value);
+    .map((value): string => value.object.value)
+    .map(value => {
+      const url = new URL(value, origin);
+      return url.pathname.substr(url.pathname.lastIndexOf("/") + 1);
+    });
 }
